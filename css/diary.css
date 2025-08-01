@@ -1,0 +1,178 @@
+/* 日记容器 */
+.diary-container {
+    margin-bottom: 20px;
+}
+
+/* 日记工具条 */
+.diary-tools {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.tool-btn {
+    flex: 1;
+    padding: 12px;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.tool-btn.active {
+    background-color: var(--secondary-color);
+}
+
+.tool-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* 日记输入框 */
+.diary-content {
+    width: 100%;
+    min-height: 200px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 16px;
+    background-color: white;
+    resize: vertical;
+    margin-bottom: 16px;
+    line-height: 1.8;
+}
+
+/* 手绘画布 */
+.drawing-canvas {
+    width: 100%;
+    height: 200px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: white;
+    margin-bottom: 16px;
+    cursor: crosshair;
+}
+
+/* 贴纸面板 */
+.stickers-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.sticker-item {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sticker-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.sticker-icon {
+    width: 40px;
+    height: 40px;
+}
+
+/* 保存按钮 */
+.save-diary {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.save-diary:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.02);
+}
+
+/* 日记动画效果 */
+@keyframes saveSuccess {
+    0% { background-color: var(--secondary-color); }
+    50% { background-color: #98FB98; }
+    100% { background-color: var(--secondary-color); }
+}
+
+.save-diary.saved {
+    animation: saveSuccess 1.5s ease;
+}
+
+/* 手绘工具样式 */
+.drawing-tools {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.color-picker {
+    display: flex;
+    gap: 8px;
+}
+
+.color-option {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px var(--border-color);
+}
+
+.color-option.active {
+    box-shadow: 0 0 0 2px var(--text-color);
+}
+
+.line-width {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.width-option {
+    height: 4px;
+    background-color: var(--text-color);
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.width-option.active {
+    background-color: var(--secondary-color);
+}
+
+.width-1 {
+    width: 10px;
+}
+
+.width-2 {
+    width: 16px;
+    height: 6px;
+}
+
+.width-3 {
+    width: 22px;
+    height: 8px;
+}
+
+.clear-canvas {
+    padding: 4px 8px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    font-size: 12px;
+}

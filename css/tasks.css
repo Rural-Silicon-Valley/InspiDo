@@ -1,0 +1,229 @@
+/* 任务容器 */
+.tasks-container {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 18px;
+    color: var(--text-color);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+/* 任务列表 */
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.task-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--secondary-color);
+}
+
+.task-item.completed {
+    background-color: var(--secondary-color);
+    opacity: 0.8;
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-color);
+    border-radius: 6px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.task-checkbox.checked {
+    background-color: var(--text-color);
+}
+
+.task-checkbox.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-text {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--light-text);
+}
+
+.task-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    opacity: 0.7;
+}
+
+/* 添加任务按钮 */
+.add-task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.add-task:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.02);
+}
+
+/* 任务动画效果 */
+@keyframes taskComplete {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.task-item.completed {
+    animation: taskComplete 0.5s ease;
+}
+
+/* 成就动画 */
+.achievement-animation {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: achievementPopup 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes achievementPopup {
+    0% { opacity: 0; transform: scale(0.5) translateY(-20px); }
+    50% { opacity: 1; transform: scale(1) translateY(0); }
+    100% { opacity: 0; transform: scale(1.2) translateY(-40px); }
+}
+
+.achievement-icon {
+    width: 60px;
+    height: 60px;
+}
+
+/* 任务输入弹窗 */
+.task-input-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.task-input-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.task-input-content {
+    background-color: white;
+    border-radius: 16px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: scaleIn 0.3s ease;
+}
+
+.task-input-title {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.task-input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    margin-bottom: 16px;
+    resize: none;
+    min-height: 80px;
+}
+
+.task-input-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.task-input-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn {
+    background-color: var(--primary-color);
+}
+
+.save-btn {
+    background-color: var(--secondary-color);
+}
+
+.task-input-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}

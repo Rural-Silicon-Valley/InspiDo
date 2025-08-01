@@ -1,0 +1,207 @@
+/* 日历容器 */
+.calendar-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 日历背景装饰 */
+.calendar-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogIDxmaWx0ZXIgaWQ9Im5vaXNlIj4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIuMSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIgLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIiAvPgogIDwvZmlsdGVyPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIC8+Cjwvc3ZnPg==');
+    opacity: 0.3;
+    z-index: 0;
+}
+
+/* 日历头部 */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.current-month {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 22px;
+    color: var(--text-color);
+}
+
+.month-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.month-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* 星期标题 */
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 14px;
+    padding: 6px 0;
+}
+
+/* 日历格子 */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.calendar-day:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    background-color: var(--accent-color);
+}
+
+.calendar-day.today {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.calendar-day.has-task {
+    background-color: rgba(209, 245, 226, 0.5);
+}
+
+.calendar-day.completed-task {
+    background-color: var(--accent-color);
+}
+
+.day-number {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.day-icon {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    opacity: 0.7;
+}
+
+/* 日期详情浮层 */
+.date-detail {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80vh;
+    background-color: white;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    overflow-y: auto;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-date {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 22px;
+    color: var(--text-color);
+}
+
+.close-detail {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.close-detail:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* 空白状态样式 */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.empty-illustration {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTAgMTUwIj48cGF0aCBmaWxsPSIjRjZFOWU5IiBkPSJNMTIwLDMwIEMxMDAsMzAsODUsNDUsODUsNjVDODUsODUsMTAwLDEwMCwxMjAsMTAwQzE0MCwxMDAsMTU1LDg1LDE1NSw2NUMxNTUsNDUsMTQwLDMwLDEyMCwzMCBaIiBmaWxsLW9wYWNpdHk9IjAuOCIvPjxjaXJjbGUgZmlsbD0iIzVENDk1NCIgY3g9IjkwIiByPSIxNSIgY3k9IjcwIi8+PGNpcmNsZSBmaWxsPSIjNUQ0OTU0IiBjeD0iMTMwIiByPSIxNSIgY3k9IjcwIi8+PHBhdGggZD0iTTExMCw4NUw5MCw4NSBMMTAwLDk1IFoiIGZpbGw9IiM1RDQ5NTQiLz48cGF0aCBmaWxsPSIjRkZGMEQ2IiBkPSJNNTAsMTAwIEM1MCwxMTUsNjUsMTMwLDgwLDEzMCBDMTA1LDEzMCwxMjAsMTE1LDEyMCwxMDAgQzEyMCw4NSwxMDUsNzAsODAsNzAgQzY1LDcwLDUwLDg1LDUwLDEwMCBaIiBmaWxsLW9wYWNpdHk9IjAuOCIvPjxjaXJjbGUgZmlsbD0iI0ZGRjNENiIgY3g9IjcwIiByPSI4IiBjeT0iNjAiLz48L3N2Zz4=');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.empty-text {
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 16px;
+    color: var(--light-text);
+    max-width: 200px;
+}
